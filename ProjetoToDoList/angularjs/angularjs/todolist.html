@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="todo.js"></script>
+    <link rel="stylesheet" href="todo.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de compras</h1>
+    <div ng-controller="TodoListController as todoList">
+        <span>{{todoList.remaining()}} de {{todoList.todos.lenght}} restando</span>
+        [<a href="" ng-click="todoList.archive()">arquivados</a>]
+        <ul class="unsyled">
+            <li ng-repeat="todo in todoList.todos">
+            <label class="checkbox">
+                <input type="checkbox" ng-model="todo.done">
+                <span class="done-{{todo.done}}">{{todo.text}}</span>
+            </label>
+            </li>
+        </ul>
+        <form ng-submit="todoList.addTodo()">
+            <input type="text" ng-model="todoList.todoText" size="30" placeholder="Adicione novo item na lista...">
+            <input type="submit" class="btn-primary" value="add">
+        </form>
+
+    </div>
+    
+</body>
+</html>
